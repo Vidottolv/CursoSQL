@@ -1,0 +1,41 @@
+Banco de dados transacional/operacional: comum, todo lugar tem que ter (armazena as infos gerais da empresa)
+faremos somente: Insert / Update / Delete / Select
+
+Data Warehouse: Fragmentos do banco de dados transacional + infos externas e afins. Criado a partir de diversos questionamentos que fazemos para buscarmos novas respostas analíticas.
+-> podem ser dados antigos ou dados online (atuais)
+Podemos ter diversos DW, e ele é dimensional (feito por tabela FATO e dimensões, conforme dito por Kimball)
+O DW é feito somente para leitura (vamos extrair dados para fazer análises, é no banco transacional que nós fazemos alterações, adições e afins). Caso o DW não responda todas as perguntas, deve-se criar novos DW para chegarmos nas respostas.
+
+IoT (Internet of Things): a internet das coisas é um hype atual, onde são armazenados os diversos dados de tudo que é eletrônico, a fim de melhorar o entendimento mundial acerca da tecnologia.
+
+SGBD - Sistema Gerenciador de Bancos de Dados (MySQL, Oracle, MongoDB, SQL Server)
+independente de tudo, quando usamos os sgbd, é ele que acessa os arquivos do banco de dados que queremos. Não temos que nos preocupar com a criação do CRUD (criar, inserir, etc), é o SGBD quem vai fazer isso, através da linguagem SQL.
+Para qualquer app que vamos criar, conhecer a linguagem SQL é essencial para termos maior facilidade na hora de buscarmos os dados dentro do SGBD.
+Qualquer acesso em um banco de dados é chamado de transação (faz a requisição do serviço do banco, ouve a transação, faz o processo e devolve o dado)
+
+SQL - dividida nos seguintes subconjuntos:
+* DDL (Create ***, Alter ***, Drop *** [criar, alterar, remover]) - Linguagem de Definição de Dados (Data Definition Language)
+* DML (Insert ***, Update ***, Delete *** [inserir, atualizar, remover]) - Linguagem de Manipulação de Dados (Data Manipulation Language)
+* DQL - (Select *** [selecionar])  - Lingugagem de query/consulta de dados (Data Query Language)
+* DCL - (Revoke, Grant) - Lingugagem de controle de dados (Data Control language)
+* TC - (Commit, rollback, savepoint) -  Controle de Transação (Transacion Control)
+
+
+Regra de negócios + Estatística + Programação: Ciência de Dados
+
+Estima-se que em 2035, o mundo tera 2kzb de dados (cada zettabyte são 1biTB)). Em 2020 tinhamos 35zb
+
+	Funções Básicas do SGBD:
+*Métodos de acesso: São os subconjuntos do SQL
+*Integridade Semântica: Garantia de que os dados serão sempre armazenados da maneira correta e no datatype certo
+*Segurança: Evitar violação do sistema (ACID - Atomicidade, Consistência, Isolamento e Durabilidade). Dentro de segurança dos dados, temos os LOGs que são utilizados normalmente no lugar dos Backups. Porque isso? R: no Log nós podemos encontrar aonde é que está a falha. Copiamos até onde está a falha e executamos para ver qual foi o erro. Atualmente, não existem mais backups em bancos de dados, o que temos é o espelhamento dele (deixamos rodando 2 bancos, onde 1 é a cópia online do outro, e será utilizado instantaneamente quando o Main cair)
+*Concorrência: Não precisamos fazer nenhum script para fazer com que a pessoa que compre ou acesse primeiro seja exclusiva, o SGBD faz isso sozinho
+*Independência: nenhum usuário fica preso a outro, podendo ter diversas pessoas utilizando diversos apps ao mesmo tempo
+
+
+Dado e informação: Dados são coisas brutas, que não nos agregam conhecimentos. Os dados não são tratados e nem especificados conforme necessidades. Diferentemente, as informações são tratadas e associadas a um domínio, para que possamos entender qual a relação daquele dado com as demais coisas que temos. O dado é o pilar que temos para obtermos uma informação. Dado + Informação = Conhecimento.
+
+
+
+
+

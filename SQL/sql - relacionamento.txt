@@ -1,0 +1,37 @@
+-----> Relacionamento de tabelas:
+
+SELECT 'tabela de nome caso estejamos falando de nome'.TabelaCliente, 'tabela de pedido caso estejamos falando de pedido'.TabelaPedido
+
+FROM TabelaCliente, TabelaPedido
+
+WHERE TabelaCliente.ID_Cliente = TabelaPedido.ID_Pedido (pra garantirmos que os IDs estão iguais nas tables)
+
+
+------> Para facilitar, podemos amarrar as tabelas a uma única letra ou vogal, para não termos que escrever seu nome todo, da seguinte forma:
+
+SELECT c.nome, p.dt_compra
+
+FROM TabelaCliente c, TabelaPedido p
+
+WHERE c.id_cliente = p.id_cliente
+
+
+
+
+-----> VARIAS TABELAS:
+
+SELECT c.nome, p.dt_compra, ip.id_item, i.ds_item (Toda vez que usamos uma abreviação, nós devemos lembrar que ela tem que ser facilmente relacionada com a tabela, por isso costumamos utilizar a primeira letra do nome da tabela)
+
+FROM TabelaCliente c, TabelaPedido p, TabelaItemPedido ip, TabelaItem i (repare como fizemos a seleção de cada 'alias'. o 'alias' é o nome desta convenção de apelido)
+
+WHERE c.id_cliente = p.id_cliente (está vendo se o id do cliente está igual ao id do pedido)
+AND p.id_pedido = ip.id_pedido (está vendo se o id do pedido está igual ao id do item do pedido)
+AND p.id_item = i.id_item (está vendo se o id do item no pedido está igual ao id do item)
+
+
+
+
+INNER JOIN (ou só join)
+O Inner Join funciona da seguinte forma:
+
+INNER JOIN TabelaPedido p ON (c.id_cliente = p.id_cliente) ----> neste caso, a Join está fazendo o seguinte: verificando se o id de cliente na tabela Alias 'c' é igual ao id de cliente na tabela Alias 'p' (é a mesma ideia do where que usamos ali acima)
