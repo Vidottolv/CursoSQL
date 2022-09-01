@@ -1,0 +1,94 @@
+1 - )
+CREATE DATABASE AVALIACAO_FINAL
+ENCODING 'UFT-8'
+TEMPLATE = TEMPLATE0
+CONNECTION LIMIT = 100;
+
+
+2 - )CREATE TABLE tb_pais(
+	id_pais CHAR(2),
+	nm_pais VARCHAR(40),
+	CONSTRAINT pk_id_pais PRIMARY KEY(id_pais));
+	
+
+CREATE TABLE tb_localizacao(
+	id_localizacao INTEGER,
+	id_pais CHAR(2),
+	nm_pais VARCHAR(40),
+	CONSTRAINT fk_id_pais FOREIGN KEY(id_pais) REFERENCES tb_pais(id_pais),
+	CONSTRAINT pk_id_localizacao PRIMARY KEY(id_localizacao));
+	
+
+
+CREATE TABLE tb_departamento(
+	id_departamento INTEGER,
+	id_localizacao INTEGER,
+	CONSTRAINT fk_id_localizacao FOREIGN KEY(id_localizacao) REFERENCES tb_localizacao(id_localizacao),
+	CONSTRAINT pk_id_departamento PRIMARY KEY(id_departamento));
+
+
+
+CREATE TABLE tb_funcao(
+	id_funcao VARCHAR(10),
+	ds_funcao VARCHAR(35),
+	base_salario NUMERIC,
+	teto_salario NUMERIC,
+	CONSTRAINT pk_id_funcao PRIMARY KEY(id_funcao));
+
+
+CREATE TABLE tb_empregado (
+	id_empregado INTEGER,
+	id_gerente INTEGER,
+	id_departamento INTEGER,
+	id_funcao VARCHAR(10),
+	nome VARCHAR(20),
+	sobrenome VARCHAR(25),
+	email VARCHAR(25),
+	telefone VARCHAR(20),
+	data_admissao DATE,
+	percentual_comissao NUMERIC,
+	salario NUMERIC,
+CONSTRAINT pk_emp_id_empregado PRIMARY KEY(id_empregado),
+CONSTRAINT fk_emp_id_gerente FOREIGN KEY(id_gerente) REFERENCES tb_empregado(id_empregado),
+CONSTRAINT fk_emp_id_departamento FOREIGN KEY(id_departamento) REFERENCES tb_departamento(id_departamento),
+CONSTRAINT fk_emp_id_funcao FOREIGN KEY(id_funcao) REFERENCES tb_funcao(id_funcao)
+))
+
+
+3 - )
+SELECT nome, sobrenome, ds_funcao, data_admissao
+FROM tb_empregado, tb_funcao
+WHERE data_admissao BETWEEN '1987-02-20' AND '1989-05-01';
+
+4 - )
+SELECT nome, sobrenome, nm_departamento, nm_pais
+FROM tb_empregado, tb_departamento, tb_pais
+WHERE nome SIMILAR TO '(B|L|A)%';
+
+
+5 - )
+SELECT nome, nm_departamento, cidade, estado
+FROM tb_empregado, tb_departamento, tb_localizacao
+WHERE percentual_comissao IS NOT NULL;
+
+
+6 - ) CREATE TABLE tb_empregado_copia
+AS 
+SELECT * 
+FROM tb_empregado
+
+
+7 - )
+SELECT nome || ' recebe ' || salario || ' mensalmente, mas deseja' || salario * 3 "Salário dos sonhos"
+FROM tb_empregado;
+
+8 - ) SELECT e.nome || ' se encontra alocado no' || nm_departamento || ' localizado na cidade ' || cidade || ' estado ' || estado || ' país ' || p.id_pais "Informações dos Empregados"
+FROM tb_empregado e, tb_departamento d, tb_localizacao l, tb_pais p
+INNER JOIN tb_empregado j ON(j.nome = j.sobrenome)
+
+
+9 - ) Resposta D
+
+10 - ) Resposta B
+
+11 - ) Resposta B
